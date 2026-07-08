@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Count from './Count';
 
 const FunctionalInput = ({ name }) => {
   /*
@@ -47,6 +48,7 @@ const FunctionalInput = ({ name }) => {
           </li>
         ))}
       </ul>
+      <Count numTodos={todos.length}/>
     </section>
   );
 };

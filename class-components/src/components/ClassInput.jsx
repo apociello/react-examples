@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import Count from './Count';
 
 class ClassInput extends Component {
   constructor(props) {
@@ -59,6 +60,7 @@ class ClassInput extends Component {
             </li>
           ))}
         </ul>
+        <Count numTodos={this.state.todos.length}/>
       </section>
     );
   }
