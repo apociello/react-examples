@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Count from './Count';
+import ListItem from './ListItem';
 
 const FunctionalInput = ({ name }) => {
   /*
@@ -22,7 +23,7 @@ const FunctionalInput = ({ name }) => {
 
   const deleteItem = (item) => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo != item));
-  }
+  };
 
   return (
     <section>
@@ -42,13 +43,15 @@ const FunctionalInput = ({ name }) => {
       {/* The list of all the To-Do's, displayed */}
       <ul>
         {todos.map((todo) => (
-          <li key={todo}>
-            <p>{todo}</p>
-            <button onClick={() => deleteItem(todo)}>delete</button>
-          </li>
+          <ListItem
+            key={crypto.randomUUID()}
+            todo={todo}
+            deleteItem={deleteItem}
+            setTodos={setTodos}
+          />
         ))}
       </ul>
-      <Count numTodos={todos.length}/>
+      <Count numTodos={todos.length} />
     </section>
   );
 };
