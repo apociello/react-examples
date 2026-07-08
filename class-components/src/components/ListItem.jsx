@@ -2,14 +2,18 @@ import { useState } from 'react';
 
 export default function ListItem({ todo, deleteItem, setTodos }) {
   const [edit, setEdit] = useState(false);
-  const [input, setInput] = useState(todo);
+  const [input, setInput] = useState(todo.name);
 
   const handleInput = (e) => {
     setInput(e.target.value);
   };
 
   const handleSubmit = () => {
-    setTodos((todos) => todos.map((newTodo) => (newTodo === todo ? input : newTodo)));
+    setTodos((todos) =>
+      todos.map((newTodo) =>
+        newTodo.id === todo.id ? { ...newTodo, name: input } : newTodo,
+      ),
+    );
     setEdit(false);
   };
 
@@ -23,7 +27,7 @@ export default function ListItem({ todo, deleteItem, setTodos }) {
       ) : (
         <>
           {' '}
-          <p>{todo}</p>
+          <p>{todo.name}</p>
           <div className="buttons">
             <button onClick={() => setEdit(true)}>edit</button>
             <button onClick={() => deleteItem(todo)}>delete</button>

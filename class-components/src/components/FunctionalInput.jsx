@@ -8,7 +8,10 @@ const FunctionalInput = ({ name }) => {
     one to store the To-Do's
     and the other to store the value of the input field
   */
-  const [todos, setTodos] = useState(['Just some demo tasks', 'As an example']);
+  const [todos, setTodos] = useState([
+    { id: crypto.randomUUID(), name: 'Just some demo tasks' },
+    { id: crypto.randomUUID(), name: 'As an example' },
+  ]);
   const [inputVal, setInputVal] = useState('');
 
   const handleInputChange = (e) => {
@@ -17,12 +20,12 @@ const FunctionalInput = ({ name }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTodos((todo) => [...todo, inputVal]);
+    setTodos((todo) => [...todo, { id: crypto.randomUUID(), name: inputVal }]);
     setInputVal('');
   };
 
   const deleteItem = (item) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo != item));
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== item.id));
   };
 
   return (
@@ -44,7 +47,7 @@ const FunctionalInput = ({ name }) => {
       <ul>
         {todos.map((todo) => (
           <ListItem
-            key={crypto.randomUUID()}
+            key={todo.id}
             todo={todo}
             deleteItem={deleteItem}
             setTodos={setTodos}
