@@ -28,6 +28,12 @@ class ClassInput extends Component {
     }));
   }
 
+  deleteItem(item) {
+    this.setState((state) => ({
+      todos: state.todos.filter((todo) => todo !== item),
+    }));
+  }
+
   render() {
     return (
       <section>
@@ -47,7 +53,10 @@ class ClassInput extends Component {
         {/* The list of all the To-Do's, displayed */}
         <ul>
           {this.state.todos.map((todo) => (
-            <li key={todo}>{todo}</li>
+            <li key={todo}>
+              <p>{todo}</p>
+              <button onClick={() => this.deleteItem(todo)}>delete</button>
+            </li>
           ))}
         </ul>
       </section>
